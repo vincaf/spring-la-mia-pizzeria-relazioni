@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
@@ -30,13 +32,18 @@ public class Pizza {
 	@Min(value=1, message = "il prezzo deve essere maggiore di zero")
 	private int prezzo;
 	
+	@ManyToOne
+	@JoinColumn(name="promotion_id", nullable=true)
+	private Promotion promotion;
+	
 	public Pizza() { }
-	public Pizza(String nome, String descrizione, int prezzo) {
+	public Pizza(String nome, String descrizione, int prezzo, Promotion promotion) {
 		
 		setId(id);
 		setNome(nome);
 		setDescrizione(descrizione);
 		setPrezzo(prezzo);
+		setPromotion(promotion);
 	}
 	
 	public int getId() {
@@ -62,6 +69,12 @@ public class Pizza {
 	}
 	public void setPrezzo(int prezzo) {
 		this.prezzo = prezzo;
+	}
+	public Promotion getPromotion() {
+		return promotion;
+	}
+	public void setPromotion(Promotion promotion) {
+		this.promotion = promotion;
 	}
 	
 	@Override

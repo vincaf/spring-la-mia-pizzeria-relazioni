@@ -85,8 +85,8 @@ public class Promotion {
 	public String toString() {
 		return "(" + getId() + ")" 
 				+ " " + getTitle() 
-				+ " - " + getStartDate() 
-				+ " " + getEndDate();
+				+ " - " + "dal " + getStartDate() 
+				+ " " + "al " + getEndDate();
 	}
 	
 }

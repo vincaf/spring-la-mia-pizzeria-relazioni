@@ -31,7 +31,11 @@
 					</div>
 					
 					<br>
+					
+					<div th:each="pizza : ${promotion.pizzas}">Attiva su: [[${pizza.nome}]]</div>
 		
+					<br>
+					
 					<a class="btn btn-sm btn-primary" th:href="@{/promotion/update/{id} (id=*{id})}">
 						UPDATE
 					</a> 

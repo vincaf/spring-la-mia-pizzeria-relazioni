@@ -1,11 +1,14 @@
 package org.generation.italy.demo.pojo;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
@@ -36,6 +39,9 @@ public class Pizza {
 	@JoinColumn(name="promotion_id", nullable=true)
 	private Promotion promotion;
 	
+	@ManyToMany
+	private List<Ingredient> ingredients;
+	
 	public Pizza() { }
 	public Pizza(String nome, String descrizione, int prezzo, Promotion promotion) {
 		
@@ -44,6 +50,13 @@ public class Pizza {
 		setDescrizione(descrizione);
 		setPrezzo(prezzo);
 		setPromotion(promotion);
+	}
+	public Pizza(String nome, String descrizione, int prezzo, Promotion promotion, List<Ingredient> ingredients) {
+		setNome(nome);
+		setDescrizione(descrizione);
+		setPrezzo(prezzo);
+		setPromotion(promotion);
+		setIngredients(ingredients);
 	}
 	
 	public int getId() {
@@ -75,6 +88,12 @@ public class Pizza {
 	}
 	public void setPromotion(Promotion promotion) {
 		this.promotion = promotion;
+	}
+	public List<Ingredient> getIngredients() {
+		return ingredients;
+	}
+	public void setIngredients(List<Ingredient> ingredients) {
+		this.ingredients = ingredients;
 	}
 	
 	@Override

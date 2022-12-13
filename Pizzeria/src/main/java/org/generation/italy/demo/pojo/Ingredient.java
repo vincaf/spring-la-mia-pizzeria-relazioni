@@ -2,6 +2,7 @@ package org.generation.italy.demo.pojo;
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,7 +24,7 @@ public class Ingredient {
 	@Column(unique = true)
 	private String name;
 
-	@ManyToMany(mappedBy = "ingredients")
+	@ManyToMany(mappedBy = "ingredients", cascade = CascadeType.REMOVE)
 	private List<Pizza> pizzas;
 
 	public Ingredient() { };

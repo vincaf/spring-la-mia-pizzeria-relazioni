@@ -67,9 +67,8 @@ public class PizzeriaApplication implements CommandLineRunner {
 		List<Drink> drinks = drinkService.findAll();
 		System.out.println(drinks);
 		
-		// delete
-		
-		promotionService.deletePromotionById(1);
+		// delete (uncomment below to activate)
+		// promotionService.deletePromotionById(1);
 		
 		// pizza + promotions
 		
@@ -84,7 +83,7 @@ public class PizzeriaApplication implements CommandLineRunner {
 		List<Promotion> promotions = promotionService.findAllWPizza();
 
 		for (Promotion promotion : promotions) {
-			System.err.println(promotion);
+			System.err.println("\n" + promotion);
 			for (Pizza pizza : promotion.getPizzas()) {
 				System.err.println("-----\n" + pizza);
 			}

@@ -25,8 +25,8 @@ public class IngredientService {
 		return ingredientRepo.findAll();
 	}
 
-	public Optional<Ingredient> getIngredientById(int id) {
-		return ingredientRepo.findById(id);
+	public Ingredient getIngredientById(int id) {
+		return ingredientRepo.findById(id).get();
 	}
 
 	public void deleteIngredientById(int id) {

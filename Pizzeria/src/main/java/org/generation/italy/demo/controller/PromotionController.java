@@ -10,10 +10,12 @@ import org.generation.italy.demo.service.PromotionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jakarta.validation.Valid;
 
@@ -47,13 +49,32 @@ public class PromotionController {
 	}
 
 	@PostMapping("/create")
-	public String storePromotion(@Valid Promotion promotion) {
-		List<Pizza> promotionPizzas = promotion.getPizzas();
-		for (Pizza pizza : promotionPizzas) {
-			pizza.setPromotion(promotion);
-		}
-		promotionService.save(promotion);
+	public String storePromotion(
+			@Valid Promotion promotion,
+			BindingResult bindingResult,
+			RedirectAttributes redirectAttributes) {
+		
+			if(bindingResult.hasErrors()) {
+				
+				redirectAttributes.addFlashAttribute("errors", bindingResult.getAllErrors());
+				return "redirect:/promotion/create";
+			}
+			
+			try {
+				
+				List<Pizza> promotionPizzas = promotion.getPizzas();
+				for (Pizza pizza : promotionPizzas) {
+					pizza.setPromotion(promotion);
+				}
+				
+				promotionService.save(promotion);
+			} catch(Exception e) {
+				
+				redirectAttributes.addFlashAttribute("catchError", e.getMessage());
+				
+				return "redirect:/promotion/create";
+			}
 
-		return "redirect:/promotion";
+			return "redirect:/promotion";
 	}
 }

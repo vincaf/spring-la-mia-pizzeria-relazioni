@@ -32,7 +32,7 @@ public class Ingredient {
 		setName(name);
 	}
 	public Ingredient(String name, List<Pizza> pizzas) {
-		setName(name);
+		this(name);
 		setPizzas(pizzas);
 	}
 	

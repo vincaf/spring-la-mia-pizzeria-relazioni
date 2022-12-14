@@ -52,10 +52,7 @@ public class Pizza {
 		setPromotion(promotion);
 	}
 	public Pizza(String nome, String descrizione, int prezzo, Promotion promotion, List<Ingredient> ingredients) {
-		setNome(nome);
-		setDescrizione(descrizione);
-		setPrezzo(prezzo);
-		setPromotion(promotion);
+		this(nome, descrizione, prezzo, promotion);
 		setIngredients(ingredients);
 	}
 	

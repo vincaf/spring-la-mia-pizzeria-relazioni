@@ -26,6 +26,7 @@
 					
 					<div>[[*{promotion}]] </div>
 					
+					<div th:if="${!pizza.ingredients.isEmpty()}">Ingredienti: [[*{ingredients}]] </div>
 					<br>
 		
 					<a class="btn btn-sm btn-primary" th:href="@{/pizza/update/{id} (id=*{id})}">
@@ -39,7 +40,8 @@
 			
 			<div class="text-center mt-2">
 				<a class="btn btn-warning" href="/drink" >Vai ai Drink</a>
-				<a class="btn btn-success" href="/promotion" >Vai alle Promozioni</a>
+				<a class="btn btn-primary" href="/promotion" >Vai alle Promozioni</a>
+				<a class="btn btn-success" href="/ingredient" >Vai agli Ingredienti</a>
 			</div>
 		</div>
 		

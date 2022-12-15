@@ -75,14 +75,14 @@ public class IngredientController {
 		return "ingredient-update";
 	}
 	
-	@PostMapping("/update")
-	public String updateIngredient(@PathVariable("id") int id, @Valid Ingredient ingredient) {
+	@PostMapping("/update/{id}")
+	public String editIngredient(@PathVariable("id") int id, @Valid Ingredient ingredient) {
 		
 		Ingredient oldIng = ingredientService.getIngredientById(id);
 		
 		for (Pizza pizza : oldIng.getPizzas()) {
 			
-			pizza.removeIngredients(oldIng);
+			pizza.getIngredients().remove(oldIng);
 		}
 		
 		for (Pizza pizza : ingredient.getPizzas()) {

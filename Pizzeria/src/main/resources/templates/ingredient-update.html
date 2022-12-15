@@ -23,7 +23,7 @@
 			
 			<form 
 			method="POST" 
-			action="/ingredient/store"
+			th:action="@{/ingredient/update/{id} (id=${ingredient.id})}"
 			th:object="${ingredient}" >
 			
 				<input type="number" name="id" th:field="*{id}" style="display:none">
